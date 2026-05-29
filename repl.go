@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	
+
 	"os"
 	"strings"
 )
@@ -52,12 +53,20 @@ func getCommands()map[string]cliCommand{
 						commandHelp,
 
 	},
+		"map" : cliCommand{"map",
+						"Displays location of 20 areas",
+						commandMap,
+
+	},
 }	
 }
 
 
 
-
+func cleanInput(text string) []string{
+	text_slice := strings.Fields(strings.ToLower(text)) 
+	return  text_slice
+}
 func commandExit()error{
 	fmt.Println("Closing the Pokedex... Goodbye!")
 	os.Exit(0)
@@ -69,8 +78,4 @@ func commandHelp()error{
 		fmt.Println(commandname,":",details.description)
 	}
 	return nil
-}
-func cleanInput(text string) []string{
-	text_slice := strings.Fields(strings.ToLower(text)) 
-	return  text_slice
 }
